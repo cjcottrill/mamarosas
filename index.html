@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mamma Rosa's Pizzeria - Titusville, FL</title>
+  <link rel="icon" href="icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Optional: Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Minimal inline reset for consistency; you may move to styles.css */
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', Arial, sans-serif; color: #333; background: #fff; }
+    a { color: inherit; text-decoration: none; }
+  </style>
+</head>
+<body>
 
+  <!-- App Header -->
+  <header class="site-header" aria-label="Site header">
+    <div class="header-inner">
+      <img src="mammarosas.png" alt="Mamma Rosa's Pizzeria logo" class="logo" />
+      <img src="mammarosaheader.jpg" alt="Mamma Rosa's header image" class="header-image" />
+    </div>
+  </header>
+
+  <!-- Hero / Gallery -->
+  <section id="gallery" aria-label="Photo gallery" class="gallery-section">
+    <div class="gallery-rotator" id="gallery-rotator" aria-label="Gallery">
+      <img src="mammapizza1.jpg" alt="Pizza at Mamma Rosa's" class="gallery-photo" />
+    </div>
+    <div class="gallery-thumbs" aria-label="Gallery thumbnails">
+      <img src="mammapizza1.jpg" alt="Pizza" class="thumb active" />
+      <img src="mammarosaheader.jpg" alt="Restaurant interior" class="thumb" />
+      <img src="granny.jpg" alt="Family photo" class="thumb" />
+      <img src="mammacalzone1.jpg" alt="Calzone" class="thumb" />
+    </div>
+  </section>
+
+  <!-- About / Quick facts -->
+  <section id="about" aria-label="About and contact" class="about-section">
+    <h2>Welcome to Mamma Rosa's Pizzeria</h2>
+    <p>Traditional Italian-inspired pies, pastas, and entrées in Titusville. Pickup orders are welcome. Online ordering and delivery are not offered.</p>
+
+    <div class="quick-details">
+      <div class="detail">
+        <strong>Address:</strong> 381 Cheney Hwy, Titusville, FL 32780
+      </div>
+      <div class="detail">
+        <strong>Phone:</strong> (321) 385-2553
+      </div>
+      <div class="detail">
+        <strong>Hours:</strong> Tue–Sat 11:00 AM – 8:00 PM; Closed Sun & Mon
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section: data-driven from menu.json -->
+  <section id="menu" aria-label="Restaurant Menu" class="menu-section-wrapper">
+    <h2>Menu</h2>
+
+    <div id="menu-controls" class="menu-controls" aria-label="Menu controls">
+      <input type="text" id="menu-search" placeholder="Search menu..." aria-label="Search menu" />
+    </div>
+
+    <div id="menu-content" class="menu-content" role="region" aria-label="Menu items list"></div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" aria-label="Site footer">
+    <p>© <span id="year"></span> Mamma Rosa's Pizzeria. All rights reserved.</p>
+  </footer>
+
+  <!-- Data rendering script: loads menu.json and renders menu -->
+  <script src="data-render-menu.js"></script>
+
+  <!-- Optional: If you want the gallery to auto-rotate -->
+  <script>
+    // Simple gallery rotation (optional)
+    (function() {
+      const rotator = document.getElementById('gallery-rotator');
+      const slides = [
+        'mammapizza1.jpg',
+        'mammarosaheader.jpg',
+        'granny.jpg',
+        'mammacalzone1.jpg'
+      ];
+      let idx = 0;
+      function show(i) {
+        rotator.innerHTML = '<img src="' + slides[i] + '" alt="Gallery image" class="gallery-photo" />';
+      }
+      show(idx);
+      setInterval(() => {
+        idx = (idx + 1) % slides.length;
+        show(idx);
+      }, 4000);
+    }());
+  </script>
+
+</body>
+</html>
