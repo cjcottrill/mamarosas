@@ -1,90 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
+  <title>Mamma Rosa's Pizzeria - Titusville</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mamma Rosa's Pizzeria - Titusville, FL</title>
-  <link rel="icon" href="icon-192.png" />
+  <link rel="icon" href="images/icon-192.png" />
   <link rel="stylesheet" href="styles.css" />
-  <!-- Optional: Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Minimal inline reset for consistency; you may move to styles.css */
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Montserrat', Arial, sans-serif; color: #333; background: #fff; }
-    a { color: inherit; text-decoration: none; }
+    /* Optional inline tweaks for robustness if you don’t want to edit CSS later */
+    body { font-family: Inter, system-ui, Arial, sans-serif; margin: 0; background: #fff; color: #333; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 10; }
+    header img.brand { height: 48px; }
+    #hero { text-align: center; padding: 12px; background: #f8f8f8; }
+    #hero img { width: 100%; max-height: 240px; object-fit: cover; }
+    .container { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 16px; }
+    section { margin: 28px 0; }
+    h2 { font-size: 1.4rem; margin: 0.5rem 0; }
+    .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .gallery img { width: 100%; height: 110px; object-fit: cover; border-radius: 6px; }
+    @media (max-width: 900px) {
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: 1fr; }
+    }
+    /* Menu styles (kept simple; your existing CSS should apply) */
+    .menu-category { margin-bottom: 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee; }
+    .menu-category h3 { margin: 0.25rem 0; font-size: 1.15rem; }
+    .menu-items { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; }
+    .menu-items li { display: contents; }
+    .item-name { font-weight: 600; }
+    .item-desc { color: #666; font-size: 0.92em; margin-left: 6px; grid-column: 1 / -1; }
+    .item-price { justify-self: end; font-weight: 600; }
+    .section-grid { display: grid; grid-template-columns: 1fr; }
   </style>
 </head>
 <body>
-
-  <!-- App Header -->
-  <header class="site-header" aria-label="Site header">
-    <div class="header-inner">
-      <img src="images/mammarosas.png" alt="Mamma Rosa's Pizzeria logo" class="logo" />
-      <img src="images/mammarosaheader.jpg" alt="Mamma Rosa's header image" class="header-image" />
+  <!-- Brand / Header -->
+  <header>
+    <div>
+      <img src="images/mammarosas.png" alt="Mamma Rosa's Pizzeria Logo" class="brand" />
+    </div>
+    <div style="text-align:right;">
+      <div style="font-weight:700;">Mamma Rosa's Pizzeria</div>
+      <div style="font-size:12px;">Titusville, FL</div>
     </div>
   </header>
 
-  <!-- Hero / Gallery -->
-  <!-- About / Quick facts -->
-  <section id="about" aria-label="About and contact" class="about-section">
-    <h2>Welcome to Mamma Rosa's Pizzeria</h2>
-    <p>Traditional Italian-inspired pies, pastas, and entrées in Titusville.</p>
-
-    <div class="quick-details">
-      <div class="detail">
-        <strong>Address:</strong> 381 Cheney Hwy, Titusville, FL 32780
-      </div>
-      <div class="detail">
-        <strong>Phone:</strong> (321) 385-2553
-      </div>
-      <div class="detail">
-        <strong>Hours:</strong> Dining room open Tue–Sat 11:00 AM – 8:00 PM, Pickup orders are welcome; Closed Sun & Mon
-      </div>
-    </div>
+  <!-- Hero / Header image -->
+  <section id="hero" aria-label="Restaurant header">
+    <img src="images/mammarosaheader.jpg" alt="Restaurant header image" />
   </section>
 
-  <!-- Menu Section: data-driven from menu.json -->
-  <section id="menu" aria-label="Restaurant Menu" class="menu-section-wrapper">
-    <h2>Menu</h2>
+  <main class="container" id="main-content">
+    <!-- Contact & Hours -->
+    <section id="contact" aria-label="Contact and hours">
+      <h2>Visit Us</h2>
+      <p>Address: 381 Cheney Hwy, Titusville, FL 32780</p>
+      <p>Phone: (321) 385-2553</p>
+      <p>Hours: Tuesday–Saturday 11:00 AM – 8:00 PM; closed Sunday & Monday</p>
+      <p>Pickup orders welcome. Online ordering and delivery are not offered.</p>
+    </section>
 
-    <div id="menu-controls" class="menu-controls" aria-label="Menu controls">
-      <input type="text" id="menu-search" placeholder="Search menu..." aria-label="Search menu" />
-    </div>
+    <!-- Gallery / Photo Rotator (static gallery with manual cycling via simple JS) -->
+    <section id="gallery" aria-label="Photo gallery">
+      <h2>Gallery</h2>
+      <div class="gallery" id="gallery-grid" aria-label="Gallery images">
+        <img src="images/mammapizza1.jpg" alt="Pizza close-up" />
+        <img src="images/mammacalzone1.jpg" alt="Calzone close-up" />
+        <img src="images/granny.jpg" alt="Granny at the shop" />
+      </div>
+    </section>
 
-    <div id="menu-content" class="menu-content" role="region" aria-label="Menu items list"></div>
-  </section>
+    <!-- Menu (data-driven) -->
+    <section id="menu" aria-label="Menu" style="margin-top: 8px;">
+      <h2>Our Menu</h2>
+      <div id="menu-content" class="section-grid"></div>
+    </section>
 
-  <!-- Footer -->
-  <footer class="site-footer" aria-label="Site footer">
-    <p>© <span id="year"></span> Mamma Rosa's Pizzeria. All rights reserved.</p>
+  </main>
+
+  <footer class="container" style="padding: 20px 16px; text-align:center; color:#666; font-size:13px;">
+    © <span id="year"></span> Mamma Rosa's Pizzeria. All rights reserved.
   </footer>
 
-  <!-- Data rendering script: loads menu.json and renders menu -->
-  <script src="data-render-menu.js"></script>
-
-  <!-- Optional: If you want the gallery to auto-rotate -->
   <script>
-    // Simple gallery rotation (optional)
-    (function() {
-      const rotator = document.getElementById('gallery-rotator');
-      const slides = [
-        'mammapizza1.jpg',
-        'mammarosaheader.jpg',
-        'granny.jpg',
-        'mammacalzone1.jpg'
-      ];
-      let idx = 0;
-      function show(i) {
-        rotator.innerHTML = '<img src="' + slides[i] + '" alt="Gallery image" class="gallery-photo" />';
-      }
-      show(idx);
-      setInterval(() => {
-        idx = (idx + 1) % slides.length;
-        show(idx);
-      }, 4000);
-    }());
-  </script>
+    // Update year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Simple gallery rotation (optional)
+    (function rotateGallery() {
+      const grid = document.getElementById('gallery-grid');
+      const items = grid.querySelectorAll('img');
+      let idx = 0;
+      setInterval(() => {
+        items.forEach((img, i) => img.style.opacity = (i === idx) ? '1' : '0.6');
+        idx = (idx + 1) % items.length;
+      }, 3500);
+    })();
+
+    // Load menu from data/menu.json and render without a search bar
+    async function loadMenu() {
+      try {
+        const resp = await fetch('data/menu.json', { cache: 'reload' });
+        if (!resp.ok) throw new Error('Failed to load menu');
+        const data = await resp.json();
+        renderMenu(data);
+      } catch (err) {
+        console.error('Menu load error:', err);
+        document.getElementById('menu-content').innerHTML =
+          '<p>Menu is currently unavailable. Please try again later.</p>';
+      }
+    }
+
+    function renderMenu(data) {
+      const container = document.getElementById('menu-content');
+      container.innerHTML = '';
+
+      data.categories.forEach(cat => {
+        const catEl = document.createElement('div');
+        catEl.className = 'menu-category';
+
+        const title = document.createElement('h3');
+        title.textContent = cat.name;
+        catEl.appendChild(title);
+
+        const list = document.createElement('ul');
+        list.className = 'menu-items';
+
+        cat.items.forEach(item => {
+          const li = document.createElement('li');
+          // Use a simple grid-like item: name on left, price on right
+          const name = document.createElement('span');
+          name.className = 'item-name';
+          name.textContent = item.name;
+
+          const price = document.createElement('span');
+          price.className = 'item-price';
+          price.textContent = '$' + Number(item.price).toFixed(2);
+
+          li.appendChild(name);
+          if (item.description) {
+            const desc = document.createElement('span');
+            desc.className = 'item-desc';
+            desc.textContent = ' — ' + item.description;
+            li.appendChild(desc);
+          }
+          li.appendChild(price);
+          list.appendChild(li);
+        });
+
+        catEl.appendChild(list);
+        container.appendChild(catEl);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', loadMenu);
+  </script>
 </body>
 </html>
