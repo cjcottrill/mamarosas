@@ -1,0 +1,115 @@
+/* Base / Theme */
+:root{
+  --bg: #0b0f14;
+  --card: rgba(17,23,28,0.95);
+  --text: #f5f5f5;
+  --muted: #9aa4ab;
+  --accent: #e67e22;
+  --border: rgba(255,255,255,0.08);
+}
+*{box-sizing:border-box}
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: #0b0f14;
+}
+a { color: #a8d7ff; text-decoration: none; }
+
+/* App Header */
+.site-header {
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(11,15,20,0.95);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 12px;
+}
+.header-inner {
+  display: flex; align-items: center; gap: 10px;
+}
+.logo { height: 40px; width: auto; }
+.header-image { height: 40px; width: auto; border-radius: 6px; }
+
+/* Hero / Gallery block will be in index; keep spacing consistent */
+.gallery-section { width: 100%; display: block; }
+
+/* Main content */
+#content { padding: 12px; padding-bottom: 90px; }
+
+/* Card blocks for sections */
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 14px;
+  margin: 12px 0;
+  box-shadow: 0 6px 20px rgba(0,0,0,.25);
+  border: 1px solid var(--border);
+}
+.card h2 { margin: 0 0 8px; font-size: 1.25rem; }
+
+/* Location / Hours */
+#location p { margin: 6px 0; color: #e9f0f4; }
+#location a { color: #a8d7ff; }
+
+/* Menu */
+#menu { line-height: 1.4; }
+.menu-controls { display: flex; gap: 6px; margin-bottom: 6px; }
+#menu-search {
+  width: 100%; padding: 10px 12px;
+  border: 1px solid #444; border-radius: 8px;
+  background: #111; color: #fff;
+}
+.menu-section { margin: 10px 0; }
+.menu-section h3 { font-size: 1.05rem; margin: 6px 0 6px; }
+.menu-items { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr; gap: 6px; }
+.menu-item { display: grid; grid-template-columns: 1fr auto; align-items: center;
+  padding: 8px 6px; border-bottom: 1px solid #2a2a2a;
+}
+.item-title { font-weight: 600; }
+.item-desc { color: #bbb; font-size: .92em; grid-column: 1 / -1; }
+.item-price { font-weight: 700; }
+
+/* Two-column layout on larger screens */
+@media (min-width: 600px) {
+  .menu-items { grid-template-columns: 1fr 1fr; }
+}
+
+/* Gallery */
+.gallery-viewport { overflow: hidden; width: 100%; height: 230px; border-radius: 10px; margin-top: 6px; }
+.gallery-track { display: flex; width: 300%; height: 100%; transition: transform 0.5s ease; }
+.slide { min-width: 100%; height: 100%; }
+.slide img { width: 100%; height: 230px; object-fit: cover; display: block; }
+
+/* Gallery controls */
+.gallery-controls { display: flex; justify-content: space-between; padding: 8px 4px; }
+.gallery-controls button {
+  background: rgba(0,0,0,.5); color: #fff; border: none;
+  padding: 8px 12px; border-radius: 6px; cursor: pointer;
+}
+.gallery-dots { display: flex; justify-content: center; gap: 6px; padding: 6px; }
+.gallery-dot { width: 8px; height: 8px; border-radius: 50%; background: #555; display: inline-block; }
+.gallery-dot.active { background: #fff; }
+
+/* Bottom navigation (optional app-like) */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; justify-content: space-around;
+  background: rgba(10,10,12,.95);
+  padding: 10px 0;
+  border-top: 1px solid rgba(255,255,255,.1);
+  z-index: 15;
+}
+.bottom-nav a { color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; }
+.bottom-nav a:hover { text-decoration: underline; }
+
+/* Footer */
+.footer { text-align: center; padding: 12px; color: #888; font-size: .85rem; }
+
+/* Accessibility helper (hide visually but readable by screen readers if needed) */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0; }
+
+/* Small tweaks for better look on narrow devices */
+@media (max-width: 420px) {
+  .logo { height: 34px; }
+  .header-image { height: 34px; }
+}
