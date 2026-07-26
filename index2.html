@@ -78,7 +78,6 @@
     </div>
     <div class="wrap top-actions" aria-label="Theme control">
       <button id="themeBtn" class="theme-toggle" aria-label="Toggle color mode" title="Toggle color mode" aria-pressed="false" data-theme="dark">
-        <!-- Initial Moon Icon (since default is dark) -->
         <span id="themeIcon" aria-label="Moon" role="img">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
@@ -89,7 +88,7 @@
   </header>
 
   <main class="wrap" id="content">
-    <!-- Location -->
+    <!-- Location & Hours (single lines for hours) -->
     <section id="location" class="section" aria-label="Location">
       <h2>Visit Us</h2>
       <p>381 Cheney Hwy, Titusville, FL 32780</p>
@@ -97,40 +96,205 @@
       <p>Dining Room Open and Pick-Up Hours:</p>
     </section>
 
-    <!-- Hours (single-line items) -->
     <section id="hours" class="section" aria-label="Hours">
-      <h2>Hours</h2>
-      <ul class="hours-list" aria-label="Weekly hours">
-        <li>Dining Room Open and Pick-Up Hours:</li>
-        <li>11:00 AM – 8:00 PM</li>
-        <li>Tuesday through Saturday</li>
-        <li>Closed Sunday and Monday</li>
+      <ul class="hours-list" aria-label="Weekly hours" style="margin:0;padding:0; display:block;">
+        <li style="text-align:left; padding:6px 0;">Dining Room Open and Pick-Up Hours:</li>
+        <li style="text-align:left; padding:6px 0;">11:00 AM – 8:00 PM</li>
+        <li style="text-align:left; padding:6px 0;">Tuesday through Saturday</li>
+        <li style="text-align:left; padding:6px 0;">Closed Sunday and Monday</li>
       </ul>
     </section>
 
-    <!-- Menu (embedded) -->
+    <!-- Full Menu (embedded) -->
     <section id="menu" class="section" aria-label="Full menu">
       <h2>Menu</h2>
 
-      <section class="menu-section" aria-label="Calzones">
-        <h3>Calzones</h3>
-        <div class="menu-item" data-item="Calzone" data-price="13.75" tabindex="0" data-photo="images/mammacalzone1.jpg">
-          <span class="item-name">Calzone</span>
-          <span class="item-price">$13.75</span>
+      <section class="menu-section" aria-label="Appetizers">
+        <h3>Appetizers</h3>
+        <div class="grid" style="gap:6px;">
+          <div class="menu-item" data-item="Mozzarella Sticks" data-price="6.99" tabindex="0" data-image="images/icon-192.png" data-desc="Mozzarella sticks, fried golden and crispy." >
+            <span class="item-name">Mozzarella Sticks</span><span class="item-price">$6.99</span>
+          </div>
+          <div class="menu-item" data-item="Fried Calamari" data-price="9.99" tabindex="0" data-image="images/icon-192.png" data-desc="Tender calamari rings with marinara." >
+            <span class="item-name">Fried Calamari</span><span class="item-price">$9.99</span>
+          </div>
+          <div class="menu-item" data-item="Garlic Knots" data-price="4.99" tabindex="0" data-image="images/icon-192.png" data-desc="Warm garlic knots with herbs." >
+            <span class="item-name">Garlic Knots</span><span class="item-price">$4.99</span>
+          </div>
+          <div class="menu-item" data-item="Meatball Marinara" data-price="7.99" tabindex="0" data-image="images/icon-192.png" data-desc="Savory meatballs in marinara." >
+            <span class="item-name">Meatball Marinara</span><span class="item-price">$7.99</span>
+          </div>
+          <div class="menu-item" data-item="Sausage Marinara" data-price="7.99" tabindex="0" data-image="images/icon-192.png" data-desc="Sausage with marinara and cheese." >
+            <span class="item-name">Sausage Marinara</span><span class="item-price">$7.99</span>
+          </div>
+          <div class="menu-item" data-item="Chicken Fingers" data-price="7.99" tabindex="0" data-image="images/icon-192.png" data-desc="Crispy chicken tenders with dipping sauce." >
+            <span class="item-name">Chicken Fingers</span><span class="item-price">$7.99</span>
+          </div>
+          <div class="menu-item" data-item="French Fries" data-price="3.99" tabindex="0" data-image="images/icon-192.png" data-desc="Crispy golden fries." >
+            <span class="item-name">French Fries</span><span class="item-price">$3.99</span>
+          </div>
         </div>
       </section>
 
-      <!-- Only a subset shown for brevity; you can add more items similarly if desired -->
-      <section class="menu-section" aria-label="Other Items">
-        <h3>Other Items</h3>
-        <div class="menu-item" data-item="Spaghetti" data-price="12.00" tabindex="0">
-          <span class="item-name">Spaghetti</span>
-          <span class="item-price">$12.00</span>
+      <section class="menu-section" aria-label="Sauces & Sides">
+        <h3>Sauces & Sides</h3>
+        <div class="grid" style="gap:6px;">
+          <div class="menu-item" data-item="Alfredo Sauce" data-price="2.99" tabindex="0" data-image="images/icon-192.png" data-desc="Creamy Alfredo sauce." >
+            <span class="item-name">Alfredo Sauce</span><span class="item-price">$2.99</span>
+          </div>
+          <div class="menu-item" data-item="Side of Sauce" data-price="0.99" tabindex="0" data-image="images/icon-192.png" data-desc="Additional sauce." >
+            <span class="item-name">Side of Sauce</span><span class="item-price">$0.99</span>
+          </div>
         </div>
-        <div class="menu-item" data-item="Pizza Slice" data-price="Varies" tabindex="0">
-          <span class="item-name">Pizza Slice</span>
-          <span class="item-price">Varies</span>
+      </section>
+
+      <section class="menu-section" aria-label="Salads">
+        <h3>Salads</h3>
+        <div class="grid" style="gap:6px;">
+          <div class="menu-item" data-item="Caesar" data-price="6.99" tabindex="0" data-image="images/icon-192.png" data-desc="Crisp romaine, croutons, parmesan." >
+            <span class="item-name">Caesar</span><span class="item-price">$6.99</span>
+          </div>
+          <div class="menu-item" data-item="House" data-price="6.99" tabindex="0" data-image="images/icon-192.png" data-desc="House greens with toppings." >
+            <span class="item-name">House</span><span class="item-price">$6.99</span>
+          </div>
+          <div class="menu-item" data-item="Greek" data-price="7.49" tabindex="0" data-image="images/icon-192.png" data-desc="Feta, olives, vegetables." >
+            <span class="item-name">Greek</span><span class="item-price">$7.49</span>
+          </div>
+          <div class="menu-item" data-item="Antipasto" data-price="8.99" tabindex="0" data-image="images/icon-192.png" data-desc="Meat, cheese and veggies." >
+            <span class="item-name">Antipasto</span><span class="item-price">$8.99</span>
+          </div>
         </div>
+      </section>
+
+      <section class="menu-section" aria-label="Pastas & Specials">
+        <h3>Pastas & Specials</h3>
+        <div class="grid" style="gap:6px;">
+          <div class="menu-item" data-item="Chicken Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Chicken parm with marinara & cheese." >
+            <span class="item-name">Chicken Parmigiana</span><span class="item-price">$13.75</span>
+          </div>
+          <div class="menu-item" data-item="Eggplant Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Eggplant parm with marinara & cheese." >
+            <span class="item-name">Eggplant Parmigiana</span><span class="item-price">$13.75</span>
+          </div>
+          <div class="menu-item" data-item="Fettuccine Alfredo" data-price="12.99" tabindex="0" data-image="images/icon-192.png" data-desc="Creamy Alfredo sauce over fettuccine." >
+            <span class="item-name">Fettuccine Alfredo</span><span class="item-price">$12.99</span>
+          </div>
+          <div class="menu-item" data-item="Fettuccine Alfredo with Chicken" data-price="15.99" tabindex="0" data-image="images/icon-192.png" data-desc="Fettuccine with Alfredo sauce and chicken." >
+            <span class="item-name">Fettuccine Alfredo with Chicken</span><span class="item-price">$15.99</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section" aria-label="Pasta">
+        <h3>Pasta</h3>
+        <div class="grid" style="gap:6px;">
+          <div class="menu-item" data-item="Spaghetti" data-price="12.00" tabindex="0" data-image="images/icon-192.png" data-desc="Classic spaghetti with marinara or tomato sauce." >
+            <span class="item-name">Spaghetti</span><span class="item-price">$12.00</span>
+          </div>
+          <div class="menu-item" data-item="Ziti" data-price="12.00" tabindex="0" data-image="images/icon-192.png" data-desc="Ziti with your choice of sauce." >
+            <span class="item-name">Ziti</span><span class="item-price">$12.00</span>
+          </div>
+          <div class="menu-item" data-item="Fettuccine with Tomato or Marinara" data-price="12.00" tabindex="0" data-image="images/icon-192.png" data-desc="Fettuccine with tomato/marinara sauce." >
+            <span class="item-name">Fettuccine with Tomato or Marinara</span><span class="item-price">$12.00</span>
+          </div>
+          <div class="menu-item" data-item="Lasagna" data-price="16.50" tabindex="0" data-image="images/icon-192.png" data-desc="Layered pasta, cheese, meat sauce." >
+            <span class="item-name">Lasagna</span><span class="item-price">$16.50</span>
+          </div>
+          <div class="menu-item" data-item="Baked Ziti" data-price="16.50" tabindex="0" data-image="images/icon-192.png" data-desc="Baked pasta with cheese and sauce." >
+            <span class="item-name">Baked Ziti</span><span class="item-price">$16.50</span>
+          </div>
+          <div class="menu-item" data-item="Meatball Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Meatballs with melted cheese." >
+            <span class="item-name">Meatball Parmigiana</span><span class="item-price">$13.75</span>
+          </div>
+          <div class="menu-item" data-item="Sausage Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Sausage parmigiana sandwich." >
+            <span class="item-name">Sausage Parmigiana</span><span class="item-price">$13.75</span>
+          </div>
+          <div class="menu-item" data-item="Chicken Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Chicken parmigiana with sauce and cheese." >
+            <span class="item-name">Chicken Parmigiana</span><span class="item-price">$13.75</span>
+          </div>
+          <div class="menu-item" data-item="Eggplant Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Eggplant parmigiana with cheese." >
+            <span class="item-name">Eggplant Parmigiana</span><span class="item-price">$13.75</span>
+          </div>
+          <div class="menu-item" data-item="Sausage & Peppers" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Sausage with peppers." >
+            <span class="item-name">Sausage & Peppers</span><span class="item-price">$13.75</span>
+          </div>
+          <div class="menu-item" data-item="Philly Cheesesteak" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Philly-style cheesesteak." >
+            <span class="item-name">Philly Cheesesteak</span><span class="item-price">$13.75</span>
+          </div>
+          <div class="menu-item" data-item="Italian" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Classic Italian sandwich." >
+            <span class="item-name">Italian</span><span class="item-price">$13.75</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section" aria-label="Calzones">
+        <h3>Calzones</h3>
+        <div class="grid" style="gap:6px;">
+          <div class="menu-item" data-item="Calzone" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Hand-stuffed with cheese." >
+            <span class="item-name">Calzone</span><span class="item-price">$13.75</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section" aria-label="Kids Menu">
+        <h3>Kids Menu</h3>
+        <div class="grid" style="gap:6px;">
+          <div class="menu-item" data-item="Spaghetti with sauce" data-price="8.00" tabindex="0" data-image="images/icon-192.png" data-desc="Spaghetti with sauce for kids." >
+            <span class="item-name">Spaghetti with sauce</span><span class="item-price">$8.00</span>
+          </div>
+          <div class="menu-item" data-item="Chicken Basket" data-price="8.00" tabindex="0" data-image="images/icon-192.png" data-desc="Chicken basket for kids." >
+            <span class="item-name">Chicken Basket</span><span class="item-price">$8.00</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section" aria-label="Desserts">
+        <h3>Desserts</h3>
+        <div class="grid" style="gap:6px;">
+          <div class="menu-item" data-item="Cheesecake" data-price="6.00" tabindex="0" data-image="images/icon-192.png" data-desc="Classic cheesecake." >
+            <span class="item-name">Cheesecake</span><span class="item-price">$6.00</span>
+          </div>
+          <div class="menu-item" data-item="Tiramisu" data-price="6.00" tabindex="0" data-image="images/icon-192.png" data-desc="Tiramisu dessert." >
+            <span class="item-name">Tiramisu</span><span class="item-price">$6.00</span>
+          </div>
+          <div class="menu-item" data-item="Cannoli" data-price="6.00" tabindex="0" data-image="images/icon-192.png" data-desc="Cannoli pastry." >
+            <span class="item-name">Cannoli</span><span class="item-price">$6.00</span>
+          </div>
+          <div class="menu-item" data-item="Zeppolis" data-price="5.00" tabindex="0" data-image="images/icon-192.png" data-desc="Zeppolis pastry balls." >
+            <span class="item-name">Zeppolis</span><span class="item-price">$5.00</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section" aria-label="Drinks">
+        <h3>Drinks</h3>
+        <div class="grid" style="gap:6px;">
+          <div class="menu-item" data-item="Coke" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Soft drink." >
+            <span class="item-name">Coke</span><span class="item-price">$3.00</span>
+          </div>
+          <div class="menu-item" data-item="Diet Coke" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Diet Coke." >
+            <span class="item-name">Diet Coke</span><span class="item-price">$3.00</span>
+          </div>
+          <div class="menu-item" data-item="Sprite" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Sprite." >
+            <span class="item-name">Sprite</span><span class="item-price">$3.00</span>
+          </div>
+          <div class="menu-item" data-item="Fruit Punch" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Fruit punch." >
+            <span class="item-name">Fruit Punch</span><span class="item-price">$3.00</span>
+          </div>
+          <div class="menu-item" data-item="Root Beer" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Root Beer." >
+            <span class="item-name">Root Beer</span><span class="item-price">$3.00</span>
+          </div>
+          <div class="menu-item" data-item="Iced Tea" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Iced Tea." >
+            <span class="item-name">Iced Tea</span><span class="item-price">$3.00</span>
+          </div>
+          <div class="menu-item" data-item="Beer &amp; Wine" data-price="Varies" tabindex="0" data-image="images/icon-192.png" data-desc="Beer & Wine (Dine-in only)." >
+            <span class="item-name">Beer &amp; Wine</span><span class="item-price">Dine-in only</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="menu-section" aria-label="Party Trays">
+        <h3>Party Trays</h3>
+        <p style="text-align:center;margin:6px 0 0;font-size:14px;">Available with 24-hour notice</p>
       </section>
     </section>
 
@@ -151,28 +315,29 @@
     </div>
   </main>
 
+  <footer class="footer" aria-label="Footer">
+    <p>© <span id="year2"></span> Mamma Rosa's Pizzeria. All rights reserved.</p>
+  </footer>
+
   <script>
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('year2').textContent = new Date().getFullYear();
 
     // Theme toggle with reliable sun/moon swap
     const themeBtn = document.getElementById('themeBtn');
     const themeIconContainer = document.getElementById('themeIcon');
 
-    // SVGs as strings for easy swap
-    const moonSVG = `
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-label="Moon" role="img">
-        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-      </svg>`;
-    const sunSVG = `
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-label="Sun" role="img">
-        <circle cx="12" cy="12" r="4"/>
-        <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m12.728 0l-1.414-1.414M7.464 7.464L6.05 6.05"/>
-      </svg>`;
+    const moonIcon = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-label="Moon" role="img">
+      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+    </svg>`;
+    const sunIcon = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-label="Sun" role="img">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v2m0 16v2m8-10h-2M6 12H4m14.95-6.95l-1.41 1.41M6.46 18.54L5.05 17.13" />
+    </svg>`;
 
     function setThemeIcon(theme) {
-      // theme 'dark' shows moon, 'light' shows sun
-      themeIconContainer.innerHTML = theme === 'light' ? sunSVG : moonSVG;
+      themeIconContainer.innerHTML = theme === 'light' ? sunIcon : moonIcon;
       themeBtn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
       themeBtn.setAttribute('data-theme', theme);
     }
@@ -196,28 +361,38 @@
     const modalClose = document.getElementById('modalClose');
 
     function openModalFor(item) {
-      // For Calzone, show image + description
-      if (item.toLowerCase() === 'calzone' || item.toLowerCase() === 'stuffed calzone') {
-        const imageSrc = 'images/mammacalzone1.jpg';
-        const description = `Hand-stretched dough stuffed with Ricotta and Mozzarella cheese $13.75. <br> Served with a side of our delicious marinara. <br>Each additional topping $1.25<br>Specialty Toppings $1.50<br>Extra Cheese $2.00`;
-        modalContent.innerHTML = `
-          <h3 style="text-align:center;margin:6px 0 8px">${item}</h3>
-          <img src="${imageSrc}" alt="${item}" class="modal-photo" />
-          <p class="modal-desc" style="max-width:520px;margin:0 auto;text-align:left">${description}</p>
-        `;
-      } else {
-        modalContent.innerHTML = `<h3 style="text-align:center;margin:6px 0 8px">${item}</h3><p style="text-align:center">More details coming soon.</p>`;
-      }
+      const itemName = item;
+      const price = itemDataMap[itemName]?.price ?? '';
+      const image = itemDataMap[itemName]?.image ?? 'images/icon-192.png';
+      const desc = itemDataMap[itemName]?.desc ?? 'Description coming soon.';
+
+      modalContent.innerHTML = `
+        <h3 style="text-align:center;margin:6px 0 8px">${itemName}</h3>
+        <img src="${image}" alt="${itemName}" class="modal-photo" />
+        <div class="modal-desc" style="text-align:left">${desc}${price ? `<br><br>Price: ${price}` : ''}</div>
+      `;
       modalOverlay.classList.add('active');
       modalOverlay.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
     }
 
-    // Attach click/keyboard handlers to menu items
-    document.querySelectorAll('.menu-item').forEach(el => {
+    // Build a map for all items to supply consistent modal content
+    const allItems = Array.from(document.querySelectorAll('.menu-item'));
+    const itemDataMap = {};
+    allItems.forEach(el => {
+      const name = el.getAttribute('data-item');
+      itemDataMap[name] = {
+        price: el.getAttribute('data-price'),
+        image: el.getAttribute('data-image') || 'images/icon-192.png',
+        desc: el.getAttribute('data-desc')
+      };
+    });
+
+    // Attach click/keyboard handlers
+    allItems.forEach(el => {
       el.addEventListener('click', () => {
-        const item = el.getAttribute('data-item');
-        openModalFor(item);
+        const name = el.getAttribute('data-item');
+        openModalFor(name);
       });
       el.addEventListener('keydown', (e) => {
         if(e.key === 'Enter' || e.key === ' ') {
@@ -234,7 +409,6 @@
       document.body.style.overflow = '';
       modalContent.innerHTML = '';
     }
-
     modalClose.addEventListener('click', closeModal);
     modalOverlay.addEventListener('click', (e) => {
       if(e.target === modalOverlay) closeModal();
