@@ -1,0 +1,127 @@
+Here’s a ready-to-paste menu.json file that matches the items you provided. It’s organized into clear categories for easy expansion later.
+
+```json
+{
+  "categories": [
+    {
+      "name": "Appetizers",
+      "items": [
+        { "name": "Mozzarella Sticks", "price": 7.00 },
+        { "name": "Fried Calamari", "price": 9.50 },
+        { "name": "Garlic Knots", "price": 4.50 },
+        { "name": "Meatball Marinara", "price": 8.50 },
+        { "name": "Sausage Marinara", "price": 8.50 },
+        { "name": "Chicken Fingers", "price": 7.50 },
+        { "name": "French Fries", "price": 3.50 }
+      ]
+    },
+    {
+      "name": "Sauces & Sides",
+      "items": [
+        { "name": "Alfredo Sauce", "price": 2.50 },
+        { "name": "Side of Sauce", "price": 1.50 }
+      ]
+    },
+    {
+      "name": "Salads",
+      "items": [
+        { "name": "Caesar", "price": 8.50 },
+        { "name": "House", "price": 7.50 },
+        { "name": "Greek", "price": 9.00 },
+        { "name": "Antipasto with optional chicken", "price": 10.50 }
+      ]
+    },
+    {
+      "name": "Pastas & Specialties",
+      "items": [
+        { "name": "Chicken Parmigiana", "price": 14.50 },
+        { "name": "Eggplant Parmigiana", "price": 13.75 },
+        { "name": "Fettuccine Alfredo", "price": 12.50 },
+        { "name": "Fettuccine Alfredo with Chicken", "price": 16.50 }
+      ]
+    },
+    {
+      "name": "Pasta",
+      "items": [
+        { "name": "Spaghetti", "price": 12.00 },
+        { "name": "Ziti", "price": 12.00 },
+        { "name": "Fettuccine with Tomato Sauce", "price": 12.00 },
+        { "name": "Fettuccine with Marinara Sauce", "price": 12.00 },
+        { "name": "Lasagna", "price": 16.50 },
+        { "name": "Baked Ziti", "price": 16.50 },
+        { "name": "Meatball Parmigiana", "price": 13.75 },
+        { "name": "Sausage Parmigiana", "price": 13.75 },
+        { "name": "Chicken Parmigiana", "price": 13.75 },
+        { "name": "Eggplant Parmigiana", "price": 13.75 },
+        { "name": "Sausage & Peppers", "price": 13.75 },
+        { "name": "Philly Cheesesteak", "price": 13.75 },
+        { "name": "Italian", "price": 13.75 }
+      ]
+    },
+    {
+      "name": "Pizza",
+      "items": [
+        { "name": "Cheese Pizza", "price": 12.00, "sizes": { "12": 12.00, "18": 18.00, "20": 20.00 } },
+        { "name": "White Pizza", "price": 14.00, "sizes": { "12": 14.00, "18": 19.95, "20": 22.25 } },
+        { "name": "Tomato Basil Pizza", "price": 14.00, "sizes": { "12": 14.00, "18": 20.95, "20": 23.25 } },
+        { "name": "Meat Lovers Pizza", "price": 17.00, "sizes": { "12": 17.00, "18": 23.95, "20": 25.25 } },
+        { "name": "Hawaiian", "price": 14.00, "sizes": { "12": 14.00, "18": 19.95, "20": 22.25 } },
+        { "name": "Mamma Rosa's Special", "price": 19.00, "sizes": { "12": 19.00, "18": 26.25, "20": 28.25 } },
+        { "name": "Veggie", "price": 14.00, "sizes": { "12": 14.00, "18": 19.95, "20": 22.25 } }
+      ]
+    },
+    {
+      "name": "Pizza by the Slice",
+      "items": [
+        { "name": "Pizza by the Slice", "price": 3.50 }
+      ]
+    },
+    {
+      "name": "Pan Pizza",
+      "items": [
+        { "name": "Pan Pizza (16\" square)", "price": 20.50 }
+      ]
+    },
+    {
+      "name": "Calzones",
+      "items": [
+        { "name": "Calzone", "price": 8.50 },
+        { "name": "Stuffed Calzone", "price": 9.50 }
+      ]
+    },
+    {
+      "name": "Kids Menu",
+      "items": [
+        { "name": "Spaghetti with Sauce", "price": 6.50 },
+        { "name": "Chicken Basket", "price": 6.50 }
+      ]
+    },
+    {
+      "name": "Desserts",
+      "items": [
+        { "name": "Cheesecake", "price": 6.00 },
+        { "name": "Tiramisu", "price": 6.00 },
+        { "name": "Cannoli", "price": 6.00 },
+        { "name": "Zeppolis", "price": 5.00 }
+      ]
+    },
+    {
+      "name": "Drinks",
+      "items": [
+        { "name": "Coke", "price": 3.00 },
+        { "name": "Diet Coke", "price": 3.00 },
+        { "name": "Sprite", "price": 3.00 },
+        { "name": "Fruit Punch", "price": 3.00 },
+        { "name": "Root Beer", "price": 3.00 },
+        { "name": "Iced Tea", "price": 3.00 }
+      ]
+    },
+    {
+      "name": "Party Trays",
+      "items": [
+        { "name": "Party Trays", "price": 0, "description": "24-hour notice" }
+      ]
+    }
+  ]
+}
+```
