@@ -137,7 +137,7 @@ To complete the PWA, you'll need these images in the `images/` folder:
 
 ## License
 
-Free to use and modify for your restaurant.
+Free to use and modify for your restaurant!
 
 ## Support
 
