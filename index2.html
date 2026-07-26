@@ -1,420 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mamma Rosa's Pizzeria - Titusville</title>
   <style>
-    :root{
-      --bg: #111;
-      --card: #1e1f2a;
-      --text: #e9e9ee;
-      --muted: #b8b6c2;
-      --border: rgba(255,255,255,.08);
-      --overlay: rgba(0,0,0,.6);
-      --btn-bg: #2a2b38;
-      --btn-text: #fff;
-      --btn-border: rgba(255,255,255,.15);
+    :root {
+      --bg: #0f0f12;
+      --card: #181a21;
+      --text: #e9e9e9;
+      --muted: #b5b5b5;
+      --accent: #e67e22;
+      --border: #2a2a2f;
+      --shadow: 0 6px 20px rgba(0,0,0,.25);
     }
-    [data-theme="light"]{
-      --bg: #f6f7fb;
+    [data-theme="light"] {
+      --bg: #f7f7f9;
       --card: #ffffff;
-      --text: #0e1116;
-      --muted: #5b6470;
-      --border: rgba(0,0,0,.08);
-      --overlay: rgba(0,0,0,.25);
-      --btn-bg: #e6e8ee;
-      --btn-text: #111;
-      --btn-border: rgba(0,0,0,.1);
+      --text: #1b1b1b;
+      --muted: #555;
+      --accent: #d35400;
+      --border: #e2e2e7;
+      --shadow: 0 6px 20px rgba(0,0,0,.08);
     }
-
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif}
-    a{color:inherit;text-decoration:none}
-    header{position:sticky;top:0;z-index:10;background:#1a1a1f;border-bottom:1px solid #333; display:flex; justify-content:space-between; align-items:center; padding:8px 12px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:40px;width:auto}
-    .brand-title{font-weight:700;letter-spacing:.5px}
-    .top-actions{display:flex;gap:8px; align-items:center}
-    .theme-toggle{
-      width:44px;height:44px;border-radius:12px;border:1px solid var(--btn-border);
-      background:var(--btn-bg);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
-    }
-    .theme-toggle svg{width:22px;height:22px;display:block}
-    .wrap{max-width:1000px;margin:0 auto;padding:0 16px}
-    main{padding:16px 0 60px}
-    .section{background:var(--card);border-radius:14px;padding:14px 16px;margin:14px 0}
-    .section h2{margin:6px 0 8px;font-size:18px}
-    .grid{display:grid;gap:10px}
-    @media (min-width:700px){
-      .grid{grid-template-columns:1fr 1fr}
-    }
-    ul{list-style:none;margin:0;padding:0}
-    /* Menu: each item on its own line, centered, with price on same line */
-    .menu-item{text-align:center;padding:8px 0;border-bottom:1px solid var(--border);}
-    .menu-item:last-child{border-bottom:0}
-    .item-name{display:block;text-align:center;font-weight:600}
-    .item-price{display:inline-block;margin-left:8px;font-weight:700}
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+    .container { max-width: 900px; margin: 0 auto; padding: 16px; }
+    header { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; position: sticky; top: 0; background: var(--bg); z-index: 50; border-bottom: 1px solid var(--border); }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand img { height: 40px; }
+    .theme-toggle { background: transparent; border: 0; color: var(--text); font-size: 20px; cursor: pointer; padding: 6px 10px; }
+    .hours, .contact { font-size: 14px; color: var(--muted); }
+    .section { margin: 18px 0; }
+    h2 { text-align: center; font-size: 1.25rem; margin: 6px 0 8px; color: var(--text); }
+    .menu-grid { display: grid; grid-template-columns: 1fr; gap: 8px; padding: 0; list-style: none; margin: 0; }
+    .item { display: flex; justify-content: center; align-items: center; padding: 12px; border-radius: 8px; background: var(--card); border: 1px solid var(--border); text-align: center; cursor: pointer; }
+    .item .name { font-weight: 600; }
+    .item .price { margin-left: auto; padding-left: 8px; color: var(--muted); }
     /* Modal */
-    .modal-overlay{position:fixed;inset:0;background:var(--overlay);display:none;align-items:center;justify-content:center;padding:20px}
-    .modal-overlay.active{display:flex}
-    .modal{background:var(--card);border-radius:12px;width:min(520px,92vw);max-height:80vh;overflow:auto;box-shadow:0 10px 25px rgba(0,0,0,.3);position:relative}
-    [data-theme="light"] .modal{background:#fff;color:#000}
-    .modal-header{display:flex;justify-content:flex-end;padding:8px 12px}
-    .close-btn{width:28px;height:28px;border-radius:6px;border:1px solid var(--border);background:var(--btn-bg);color:var(--btn-text);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
-    .modal-content{padding:12px 16px 20px}
-    .modal-photo{width:100%;height:auto;border-radius:8px;margin-bottom:8px}
-    .modal-desc{font-size:14px;line-height:1.4}
-    /* Footer */
-    .footer{text-align:center;color:var(--muted);font-size:12px;margin:28px 0}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background: rgba(0,0,0,.6); }
+    .modal-content { background: var(--card); margin: 8% auto; padding: 16px; border-radius: 8px; width: 90%; max-width: 420px; position: relative; }
+    .modal-close { position: absolute; top: 8px; right: 12px; border: 0; background: transparent; font-size: 20px; cursor: pointer; color: var(--muted); }
+    .modal-image { width: 100%; height: auto; border-radius: 6px; object-fit: cover; background: #ccc; min-height: 180px; }
+    .modal-desc { margin-top: 10px; font-size: 14px; color: var(--text); }
+    @media (min-width: 600px) {
+      .menu-grid { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
-  <header aria-label="Site header">
-    <div class="wrap brand" aria-label="Brand">
-      <img src="images/mammarosas.png" alt="Mamma Rosa's Pizzeria logo" />
-      <div class="brand-title">Mamma Rosa's Pizzeria</div>
+  <header>
+    <div class="brand">
+      <img src="images/mammarosas.png" alt="Mamma Rosa's Logo" />
     </div>
-    <div class="wrap top-actions" aria-label="Theme control">
-      <button id="themeBtn" class="theme-toggle" aria-label="Toggle color mode" title="Toggle color mode" aria-pressed="false" data-theme="dark">
-        <span id="themeIcon" aria-label="Moon" role="img">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-          </svg>
-        </span>
-      </button>
-    </div>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
   </header>
 
-  <main class="wrap" id="content">
-    <!-- Location & Hours (single lines for hours) -->
-    <section id="location" class="section" aria-label="Location">
-      <h2>Visit Us</h2>
-      <p>381 Cheney Hwy, Titusville, FL 32780</p>
-      <p>Phone: <a href="tel:+13213852553">(321) 385-2553</a></p>
-      <p>Dining Room Open and Pick-Up Hours:</p>
-    </section>
+  <div class="container">
+    <div class="hours" aria-label="Dining hours">
+      <strong>Dining Room Open and Pick-Up Hours:</strong><br>
+      11:00 AM – 8:00 PM<br>
+      Tuesday through Saturday<br>
+      Closed Sunday and Monday
+    </div>
 
-    <section id="hours" class="section" aria-label="Hours">
-      <ul class="hours-list" aria-label="Weekly hours" style="margin:0;padding:0; display:block;">
-        <li style="text-align:left; padding:6px 0;">Dining Room Open and Pick-Up Hours:</li>
-        <li style="text-align:left; padding:6px 0;">11:00 AM – 8:00 PM</li>
-        <li style="text-align:left; padding:6px 0;">Tuesday through Saturday</li>
-        <li style="text-align:left; padding:6px 0;">Closed Sunday and Monday</li>
-      </ul>
-    </section>
+    <div class="section" id="contact">
+      <div class="hours" style="text-align:center; margin-top:6px;">
+        381 Cheney Hwy, Titusville, FL 32780 • (321) 385-2553
+      </div>
+    </div>
 
-    <!-- Full Menu (embedded) -->
-    <section id="menu" class="section" aria-label="Full menu">
+    <div class="section" id="menu">
       <h2>Menu</h2>
 
-      <section class="menu-section" aria-label="Appetizers">
-        <h3>Appetizers</h3>
-        <div class="grid" style="gap:6px;">
-          <div class="menu-item" data-item="Mozzarella Sticks" data-price="6.99" tabindex="0" data-image="images/icon-192.png" data-desc="Mozzarella sticks, fried golden and crispy." >
-            <span class="item-name">Mozzarella Sticks</span><span class="item-price">$6.99</span>
-          </div>
-          <div class="menu-item" data-item="Fried Calamari" data-price="9.99" tabindex="0" data-image="images/icon-192.png" data-desc="Tender calamari rings with marinara." >
-            <span class="item-name">Fried Calamari</span><span class="item-price">$9.99</span>
-          </div>
-          <div class="menu-item" data-item="Garlic Knots" data-price="4.99" tabindex="0" data-image="images/icon-192.png" data-desc="Warm garlic knots with herbs." >
-            <span class="item-name">Garlic Knots</span><span class="item-price">$4.99</span>
-          </div>
-          <div class="menu-item" data-item="Meatball Marinara" data-price="7.99" tabindex="0" data-image="images/icon-192.png" data-desc="Savory meatballs in marinara." >
-            <span class="item-name">Meatball Marinara</span><span class="item-price">$7.99</span>
-          </div>
-          <div class="menu-item" data-item="Sausage Marinara" data-price="7.99" tabindex="0" data-image="images/icon-192.png" data-desc="Sausage with marinara and cheese." >
-            <span class="item-name">Sausage Marinara</span><span class="item-price">$7.99</span>
-          </div>
-          <div class="menu-item" data-item="Chicken Fingers" data-price="7.99" tabindex="0" data-image="images/icon-192.png" data-desc="Crispy chicken tenders with dipping sauce." >
-            <span class="item-name">Chicken Fingers</span><span class="item-price">$7.99</span>
-          </div>
-          <div class="menu-item" data-item="French Fries" data-price="3.99" tabindex="0" data-image="images/icon-192.png" data-desc="Crispy golden fries." >
-            <span class="item-name">French Fries</span><span class="item-price">$3.99</span>
-          </div>
+      <!-- Appetizers and Salads -->
+      <div class="section">
+        <div class="item" data-item="Mozzarella Sticks">
+          <span class="name">Mozzarella Sticks</span>
+          <span class="price">$8.25</span>
         </div>
-      </section>
-
-      <section class="menu-section" aria-label="Sauces & Sides">
-        <h3>Sauces & Sides</h3>
-        <div class="grid" style="gap:6px;">
-          <div class="menu-item" data-item="Alfredo Sauce" data-price="2.99" tabindex="0" data-image="images/icon-192.png" data-desc="Creamy Alfredo sauce." >
-            <span class="item-name">Alfredo Sauce</span><span class="item-price">$2.99</span>
-          </div>
-          <div class="menu-item" data-item="Side of Sauce" data-price="0.99" tabindex="0" data-image="images/icon-192.png" data-desc="Additional sauce." >
-            <span class="item-name">Side of Sauce</span><span class="item-price">$0.99</span>
-          </div>
+        <div class="item" data-item="Fried Calamari">
+          <span class="name">Fried Calamari</span>
+          <span class="price">$13.95</span>
         </div>
-      </section>
-
-      <section class="menu-section" aria-label="Salads">
-        <h3>Salads</h3>
-        <div class="grid" style="gap:6px;">
-          <div class="menu-item" data-item="Caesar" data-price="6.99" tabindex="0" data-image="images/icon-192.png" data-desc="Crisp romaine, croutons, parmesan." >
-            <span class="item-name">Caesar</span><span class="item-price">$6.99</span>
-          </div>
-          <div class="menu-item" data-item="House" data-price="6.99" tabindex="0" data-image="images/icon-192.png" data-desc="House greens with toppings." >
-            <span class="item-name">House</span><span class="item-price">$6.99</span>
-          </div>
-          <div class="menu-item" data-item="Greek" data-price="7.49" tabindex="0" data-image="images/icon-192.png" data-desc="Feta, olives, vegetables." >
-            <span class="item-name">Greek</span><span class="item-price">$7.49</span>
-          </div>
-          <div class="menu-item" data-item="Antipasto" data-price="8.99" tabindex="0" data-image="images/icon-192.png" data-desc="Meat, cheese and veggies." >
-            <span class="item-name">Antipasto</span><span class="item-price">$8.99</span>
-          </div>
+        <div class="item" data-item="Garlic Knots">
+          <span class="name">Garlic Knots</span>
+          <span class="price">$6.00</span>
         </div>
-      </section>
-
-      <section class="menu-section" aria-label="Pastas & Specials">
-        <h3>Pastas & Specials</h3>
-        <div class="grid" style="gap:6px;">
-          <div class="menu-item" data-item="Chicken Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Chicken parm with marinara & cheese." >
-            <span class="item-name">Chicken Parmigiana</span><span class="item-price">$13.75</span>
-          </div>
-          <div class="menu-item" data-item="Eggplant Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Eggplant parm with marinara & cheese." >
-            <span class="item-name">Eggplant Parmigiana</span><span class="item-price">$13.75</span>
-          </div>
-          <div class="menu-item" data-item="Fettuccine Alfredo" data-price="12.99" tabindex="0" data-image="images/icon-192.png" data-desc="Creamy Alfredo sauce over fettuccine." >
-            <span class="item-name">Fettuccine Alfredo</span><span class="item-price">$12.99</span>
-          </div>
-          <div class="menu-item" data-item="Fettuccine Alfredo with Chicken" data-price="15.99" tabindex="0" data-image="images/icon-192.png" data-desc="Fettuccine with Alfredo sauce and chicken." >
-            <span class="item-name">Fettuccine Alfredo with Chicken</span><span class="item-price">$15.99</span>
-          </div>
+        <div class="item" data-item="Meatball or Sausage Marinara">
+          <span class="name">Meatball or Sausage Marinara</span>
+          <span class="price">$10.00</span>
         </div>
-      </section>
-
-      <section class="menu-section" aria-label="Pasta">
-        <h3>Pasta</h3>
-        <div class="grid" style="gap:6px;">
-          <div class="menu-item" data-item="Spaghetti" data-price="12.00" tabindex="0" data-image="images/icon-192.png" data-desc="Classic spaghetti with marinara or tomato sauce." >
-            <span class="item-name">Spaghetti</span><span class="item-price">$12.00</span>
-          </div>
-          <div class="menu-item" data-item="Ziti" data-price="12.00" tabindex="0" data-image="images/icon-192.png" data-desc="Ziti with your choice of sauce." >
-            <span class="item-name">Ziti</span><span class="item-price">$12.00</span>
-          </div>
-          <div class="menu-item" data-item="Fettuccine with Tomato or Marinara" data-price="12.00" tabindex="0" data-image="images/icon-192.png" data-desc="Fettuccine with tomato/marinara sauce." >
-            <span class="item-name">Fettuccine with Tomato or Marinara</span><span class="item-price">$12.00</span>
-          </div>
-          <div class="menu-item" data-item="Lasagna" data-price="16.50" tabindex="0" data-image="images/icon-192.png" data-desc="Layered pasta, cheese, meat sauce." >
-            <span class="item-name">Lasagna</span><span class="item-price">$16.50</span>
-          </div>
-          <div class="menu-item" data-item="Baked Ziti" data-price="16.50" tabindex="0" data-image="images/icon-192.png" data-desc="Baked pasta with cheese and sauce." >
-            <span class="item-name">Baked Ziti</span><span class="item-price">$16.50</span>
-          </div>
-          <div class="menu-item" data-item="Meatball Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Meatballs with melted cheese." >
-            <span class="item-name">Meatball Parmigiana</span><span class="item-price">$13.75</span>
-          </div>
-          <div class="menu-item" data-item="Sausage Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Sausage parmigiana sandwich." >
-            <span class="item-name">Sausage Parmigiana</span><span class="item-price">$13.75</span>
-          </div>
-          <div class="menu-item" data-item="Chicken Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Chicken parmigiana with sauce and cheese." >
-            <span class="item-name">Chicken Parmigiana</span><span class="item-price">$13.75</span>
-          </div>
-          <div class="menu-item" data-item="Eggplant Parmigiana" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Eggplant parmigiana with cheese." >
-            <span class="item-name">Eggplant Parmigiana</span><span class="item-price">$13.75</span>
-          </div>
-          <div class="menu-item" data-item="Sausage & Peppers" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Sausage with peppers." >
-            <span class="item-name">Sausage & Peppers</span><span class="item-price">$13.75</span>
-          </div>
-          <div class="menu-item" data-item="Philly Cheesesteak" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Philly-style cheesesteak." >
-            <span class="item-name">Philly Cheesesteak</span><span class="item-price">$13.75</span>
-          </div>
-          <div class="menu-item" data-item="Italian" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Classic Italian sandwich." >
-            <span class="item-name">Italian</span><span class="item-price">$13.75</span>
-          </div>
+        <div class="item" data-item="Chicken Fingers">
+          <span class="name">Chicken Fingers</span>
+          <span class="price">$10.95</span>
         </div>
-      </section>
-
-      <section class="menu-section" aria-label="Calzones">
-        <h3>Calzones</h3>
-        <div class="grid" style="gap:6px;">
-          <div class="menu-item" data-item="Calzone" data-price="13.75" tabindex="0" data-image="images/icon-192.png" data-desc="Hand-stuffed with cheese." >
-            <span class="item-name">Calzone</span><span class="item-price">$13.75</span>
-          </div>
+        <div class="item" data-item="French Fries">
+          <span class="name">French Fries</span>
+          <span class="price">$5.75</span>
         </div>
-      </section>
-
-      <section class="menu-section" aria-label="Kids Menu">
-        <h3>Kids Menu</h3>
-        <div class="grid" style="gap:6px;">
-          <div class="menu-item" data-item="Spaghetti with sauce" data-price="8.00" tabindex="0" data-image="images/icon-192.png" data-desc="Spaghetti with sauce for kids." >
-            <span class="item-name">Spaghetti with sauce</span><span class="item-price">$8.00</span>
-          </div>
-          <div class="menu-item" data-item="Chicken Basket" data-price="8.00" tabindex="0" data-image="images/icon-192.png" data-desc="Chicken basket for kids." >
-            <span class="item-name">Chicken Basket</span><span class="item-price">$8.00</span>
-          </div>
+        <div class="item" data-item="Alfredo Sauce (Side)">
+          <span class="name">Alfredo Sauce (Side)</span>
+          <span class="price">$6.75</span>
         </div>
-      </section>
-
-      <section class="menu-section" aria-label="Desserts">
-        <h3>Desserts</h3>
-        <div class="grid" style="gap:6px;">
-          <div class="menu-item" data-item="Cheesecake" data-price="6.00" tabindex="0" data-image="images/icon-192.png" data-desc="Classic cheesecake." >
-            <span class="item-name">Cheesecake</span><span class="item-price">$6.00</span>
-          </div>
-          <div class="menu-item" data-item="Tiramisu" data-price="6.00" tabindex="0" data-image="images/icon-192.png" data-desc="Tiramisu dessert." >
-            <span class="item-name">Tiramisu</span><span class="item-price">$6.00</span>
-          </div>
-          <div class="menu-item" data-item="Cannoli" data-price="6.00" tabindex="0" data-image="images/icon-192.png" data-desc="Cannoli pastry." >
-            <span class="item-name">Cannoli</span><span class="item-price">$6.00</span>
-          </div>
-          <div class="menu-item" data-item="Zeppolis" data-price="5.00" tabindex="0" data-image="images/icon-192.png" data-desc="Zeppolis pastry balls." >
-            <span class="item-name">Zeppolis</span><span class="item-price">$5.00</span>
-          </div>
+        <div class="item" data-item="Marinara Sauce (Side)">
+          <span class="name">Marinara Sauce (Side)</span>
+          <span class="price">$1.25</span>
         </div>
-      </section>
-
-      <section class="menu-section" aria-label="Drinks">
-        <h3>Drinks</h3>
-        <div class="grid" style="gap:6px;">
-          <div class="menu-item" data-item="Coke" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Soft drink." >
-            <span class="item-name">Coke</span><span class="item-price">$3.00</span>
-          </div>
-          <div class="menu-item" data-item="Diet Coke" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Diet Coke." >
-            <span class="item-name">Diet Coke</span><span class="item-price">$3.00</span>
-          </div>
-          <div class="menu-item" data-item="Sprite" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Sprite." >
-            <span class="item-name">Sprite</span><span class="item-price">$3.00</span>
-          </div>
-          <div class="menu-item" data-item="Fruit Punch" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Fruit punch." >
-            <span class="item-name">Fruit Punch</span><span class="item-price">$3.00</span>
-          </div>
-          <div class="menu-item" data-item="Root Beer" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Root Beer." >
-            <span class="item-name">Root Beer</span><span class="item-price">$3.00</span>
-          </div>
-          <div class="menu-item" data-item="Iced Tea" data-price="3.00" tabindex="0" data-image="images/icon-192.png" data-desc="Iced Tea." >
-            <span class="item-name">Iced Tea</span><span class="item-price">$3.00</span>
-          </div>
-          <div class="menu-item" data-item="Beer &amp; Wine" data-price="Varies" tabindex="0" data-image="images/icon-192.png" data-desc="Beer & Wine (Dine-in only)." >
-            <span class="item-name">Beer &amp; Wine</span><span class="item-price">Dine-in only</span>
-          </div>
+        <div class="item" data-item="Caesar Salad">
+          <span class="name">Caesar Salad</span>
+          <span class="price">$7.99</span>
         </div>
-      </section>
-
-      <section class="menu-section" aria-label="Party Trays">
-        <h3>Party Trays</h3>
-        <p style="text-align:center;margin:6px 0 0;font-size:14px;">Available with 24-hour notice</p>
-      </section>
-    </section>
-
-    <section class="footer" aria-label="Footer">
-      <p>© <span id="year"></span> Mamma Rosa's Pizzeria. All rights reserved.</p>
-    </section>
-
-    <!-- Modal (hidden by default) -->
-    <div id="modalOverlay" class="modal-overlay" aria-hidden="true" role="dialog" aria-label="Dish details">
-      <div class="modal" role="document">
-        <div class="modal-header">
-          <button class="close-btn" id="modalClose" aria-label="Close modal" title="Close">✕</button>
+        <div class="item" data-item="Add Chicken (Salad)">
+          <span class="name">Add Chicken</span>
+          <span class="price">$6.50</span>
         </div>
-        <div class="modal-content" id="modalContent">
-          <!-- Content injected by script for selected item -->
+        <div class="item" data-item="House Salad">
+          <span class="name">House Salad</span>
+          <span class="price">$6.99</span>
+        </div>
+        <div class="item" data-item="Add Chicken (House)">
+          <span class="name">Add Chicken</span>
+          <span class="price">$6.50</span>
+        </div>
+        <div class="item" data-item="Greek Salad">
+          <span class="name">Greek Salad</span>
+          <span class="price">$15.25</span>
+        </div>
+        <div class="item" data-item="Antipasto Salad">
+          <span class="name">Antipasto Salad</span>
+          <span class="price">$15.25</span>
+        </div>
+        <div class="item" data-item="Extra Dressing">
+          <span class="name">Extra Dressing</span>
+          <span class="price">$1.25</span>
+        </div>
+      </div>
+
+      <!-- Entrees -->
+      <div class="section" aria-label="Entrees">
+        <h2>NEW SECTION "Entrees"</h2>
+        <div class="item" data-item="Chicken Parmigiana with Spaghetti">
+          <span class="name">Chicken Parmigiana with Spaghetti</span>
+          <span class="price">$19.95</span>
+        </div>
+        <div class="item" data-item="Eggplant Parmigiana with Spaghetti">
+          <span class="name">Eggplant Parmigiana with Spaghetti</span>
+          <span class="price">$19.95</span>
+        </div>
+        <div class="item" data-item="Fettuccine Alfredo">
+          <span class="name">Fettuccine Alfredo</span>
+          <span class="price">$17.95</span>
+        </div>
+        <div class="item" data-item="Fettuccine Alfredo with Chicken">
+          <span class="name">Fettuccine Alfredo with Chicken</span>
+          <span class="price">$20.95</span>
+        </div>
+      </div>
+
+      <!-- PASTA (changes) -->
+      <div class="section" aria-label="Pasta">
+        <h2>PASTA (changes)</h2>
+        <div class="item" data-item="Spaghetti">
+          <span class="name">Spaghetti</span>
+          <span class="price">$0.00</span>
+        </div>
+        <div class="item" data-item="Ziti">
+          <span class="name">Ziti</span>
+          <span class="price">$0.00</span>
+        </div>
+        <div class="item" data-item="Fettuccine">
+          <span class="name">Fettuccine</span>
+          <span class="price">$0.00</span>
+        </div>
+      </div>
+
+      <!-- NEW Baked Pasta -->
+      <div class="section" aria-label="Baked Pasta">
+        <h2>NEW SECTION "Baked Pasta"</h2>
+        <div class="item" data-item="Lasagna">
+          <span class="name">Lasagna</span>
+          <span class="price">$16.50</span>
+        </div>
+        <div class="item" data-item="Baked Ziti">
+          <span class="name">Baked Ziti</span>
+          <span class="price">$16.50</span>
+        </div>
+        <div class="item" data-item="Served with Tomato Sauce and Garlic Bread">
+          <span class="name">Served with Tomato Sauce and Garlic Bread</span>
+          <span class="price"></span>
+        </div>
+      </div>
+
+      <!-- 10" Subs -->
+      <div class="section" aria-label="'10\" Subs'">
+        <h2>NEW SECTION "'10\" Subs'\"</h2>
+        <div class="item" data-item="Meatball Parmigiana">
+          <span class="name">Meatball Parmigiana</span>
+          <span class="price">$13.75</span>
+        </div>
+        <div class="item" data-item="Chicken Parmigiana (subs)">
+          <span class="name">Chicken Parmigiana</span>
+          <span class="price">$13.75</span>
+        </div>
+        <div class="item" data-item="Sausage Parmigiana">
+          <span class="name">Sausage Parmigiana</span>
+          <span class="price">$13.75</span>
+        </div>
+        <div class="item" data-item="Eggplant Parmigiana (subs)">
+          <span class="name">Eggplant Parmigiana</span>
+          <span class="price">$13.75</span>
+        </div>
+        <div class="item" data-item="Extra Eggplant">
+          <span class="name">Extra Eggplant</span>
+          <span class="price">$6.50</span>
+        </div>
+        <div class="item" data-item="Sausage & Peppers">
+          <span class="name">Sausage & Peppers</span>
+          <span class="price">$13.75</span>
+        </div>
+        <div class="item" data-item="Philly Cheesesteak">
+          <span class="name">Philly Cheesesteak</span>
+          <span class="price">$13.75</span>
+        </div>
+        <div class="item" data-item="Extra steak">
+          <span class="name">Extra steak</span>
+          <span class="price">$6.50</span>
+        </div>
+        <div class="item" data-item="Italian">
+          <span class="name">Italian</span>
+          <span class="price">$13.75</span>
         </div>
       </div>
     </div>
-  </main>
+  </div>
 
-  <footer class="footer" aria-label="Footer">
-    <p>© <span id="year2"></span> Mamma Rosa's Pizzeria. All rights reserved.</p>
-  </footer>
+  <!-- Modals (one per item) -->
+  <div id="modals-root" aria-hidden="true"></div>
 
   <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('year2').textContent = new Date().getFullYear();
-
-    // Theme toggle with reliable sun/moon swap
-    const themeBtn = document.getElementById('themeBtn');
-    const themeIconContainer = document.getElementById('themeIcon');
-
-    const moonIcon = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-label="Moon" role="img">
-      <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-    </svg>`;
-    const sunIcon = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-label="Sun" role="img">
-      <circle cx="12" cy="12" r="4"/>
-      <path d="M12 2v2m0 16v2m8-10h-2M6 12H4m14.95-6.95l-1.41 1.41M6.46 18.54L5.05 17.13" />
-    </svg>`;
-
-    function setThemeIcon(theme) {
-      themeIconContainer.innerHTML = theme === 'light' ? sunIcon : moonIcon;
-      themeBtn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
-      themeBtn.setAttribute('data-theme', theme);
+    // Theme toggle
+    const themeBtn = document.getElementById('themeToggle');
+    const root = document.documentElement;
+    function setTheme(mode) {
+      if (mode === 'light') {
+        root.setAttribute('data-theme', 'light');
+        themeBtn.textContent = '🌞';
+        localStorage.setItem('theme', 'light');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+        themeBtn.textContent = '🌙';
+        localStorage.setItem('theme', 'dark');
+      }
     }
-
-    // Initialize theme
-    const stored = localStorage.getItem('theme');
-    let currentTheme = stored ? stored : 'dark';
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    setThemeIcon(currentTheme);
+    // init
+    const saved = localStorage.getItem('theme') || 'dark';
+    setTheme(saved);
 
     themeBtn.addEventListener('click', () => {
-      currentTheme = (document.documentElement.getAttribute('data-theme') === 'light') ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', currentTheme);
-      localStorage.setItem('theme', currentTheme);
-      setThemeIcon(currentTheme);
+      const current = root.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
     });
 
     // Modal logic
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalContent = document.getElementById('modalContent');
-    const modalClose = document.getElementById('modalClose');
+    const items = [
+      // Appetizers and Salads
+      { name: 'Mozzarella Sticks', price: '8.25', desc: 'Crispy breaded mozzarella sticks with marinara sauce.' },
+      { name: 'Fried Calamari', price: '13.95', desc: 'Golden fried calamari with marinara or lemon.' },
+      { name: 'Garlic Knots', price: '6.00', desc: 'Fresh dough knots brushed with garlic butter.' },
+      { name: 'Meatball or Sausage Marinara', price: '10.00', desc: 'Homemade meatballs or sausage in marinara.' },
+      { name: 'Chicken Fingers', price: '10.95', desc: 'Breaded chicken tenders with dipping sauce.' },
+      { name: 'French Fries', price: '5.75', desc: 'Crispy fried potatoes.' },
+      { name: 'Alfredo Sauce (Side)', price: '6.75', desc: 'Creamy Alfredo sauce to dip or pour.' },
+      { name: 'Marinara Sauce (Side)', price: '1.25', desc: 'Tomato marinara sauce for dipping.' },
+      { name: 'Caesar Salad', price: '7.99', desc: 'Romaine, parmesan, croutons, caesar dressing.' },
+      { name: 'Add Chicken (Salad)', price: '6.50', desc: 'Grilled chicken add-on for salad.' },
+      { name: 'House Salad', price: '6.99', desc: 'Mixed greens with tomatoes and cucumbers.' },
+      { name: 'Add Chicken (House)', price: '6.50', desc: 'Grilled chicken add-on for salad.' },
+      { name: 'Greek Salad', price: '15.25', desc: 'Feta, olives, cucumber, tomato, onion, vinaigrette.' },
+      { name: 'Antipasto Salad', price: '15.25', desc: 'Assorted meats, cheeses, olives and peppers.' },
+      { name: 'Extra Dressing', price: '1.25', desc: 'Extra dressing for salads.' },
 
-    function openModalFor(item) {
-      const itemName = item;
-      const price = itemDataMap[itemName]?.price ?? '';
-      const image = itemDataMap[itemName]?.image ?? 'images/icon-192.png';
-      const desc = itemDataMap[itemName]?.desc ?? 'Description coming soon.';
+      // Entrees
+      { name: 'Chicken Parmigiana with Spaghetti', price: '19.95', desc: 'Breaded chicken parm with spaghetti.' },
+      { name: 'Eggplant Parmigiana with Spaghetti', price: '19.95', desc: 'Eggplant parm with spaghetti.' },
+      { name: 'Fettuccine Alfredo', price: '17.95', desc: 'Creamy Alfredo sauce over fettuccine.' },
+      { name: 'Fettuccine Alfredo with Chicken', price: '20.95', desc: 'Fettuccine with Alfredo and chicken.' },
 
-      modalContent.innerHTML = `
-        <h3 style="text-align:center;margin:6px 0 8px">${itemName}</h3>
-        <img src="${image}" alt="${itemName}" class="modal-photo" />
-        <div class="modal-desc" style="text-align:left">${desc}${price ? `<br><br>Price: ${price}` : ''}</div>
-      `;
-      modalOverlay.classList.add('active');
-      modalOverlay.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
-    }
+      // PASTA (no price shown in list; using label only)
+      { name: 'Spaghetti', price: '', desc: 'Classic spaghetti pasta.' },
+      { name: 'Ziti', price: '', desc: 'Baked or classic ziti pasta.' },
+      { name: 'Fettuccine', price: '', desc: 'Flat pasta noodles with your choice of sauce.' },
 
-    // Build a map for all items to supply consistent modal content
-    const allItems = Array.from(document.querySelectorAll('.menu-item'));
-    const itemDataMap = {};
-    allItems.forEach(el => {
-      const name = el.getAttribute('data-item');
-      itemDataMap[name] = {
-        price: el.getAttribute('data-price'),
-        image: el.getAttribute('data-image') || 'images/icon-192.png',
-        desc: el.getAttribute('data-desc')
-      };
+      // Baked Pasta
+      { name: 'Lasagna', price: '16.50', desc: 'Layered pasta with meat, cheese and tomato sauce.' },
+      { name: 'Baked Ziti', price: '16.50', desc: 'Ziti baked with ricotta and mozzarella.' },
+      { name: 'Served with Tomato Sauce and Garlic Bread', price: '', desc: 'Pasta served with tomato sauce and garlic bread.' },
+
+      // 10" Subs
+      { name: 'Meatball Parmigiana', price: '13.75', desc: 'Meatballs, marinara, mozzarella on a 10" roll.' },
+      { name: 'Chicken Parmigiana', price: '13.75', desc: 'Breaded chicken parm with marinara and mozzarella.' },
+      { name: 'Sausage Parmigiana', price: '13.75', desc: 'Sausage parm with marinara and mozzarella.' },
+      { name: 'Eggplant Parmigiana', price: '13.75', desc: 'Eggplant parm with marinara and mozzarella.' },
+      { name: 'Extra Eggplant', price: '6.50', desc: 'Add extra eggplant to your sandwich.' },
+      { name: 'Sausage & Peppers', price: '13.75', desc: 'Sausage with peppers and onions.' },
+      { name: 'Philly Cheesesteak', price: '13.75', desc: 'Green peppers, onions, mushrooms, mozzarella.' },
+      { name: 'Extra steak', price: '6.50', desc: 'Extra steak addition for Philly steak.' },
+      { name: 'Italian', price: '13.75', desc: 'Ham, salami, pepperoni, cheese, lettuce, tomato, onion, oil & vinegar.' },
+    ];
+
+    const grid = document.querySelector('.menu-grid') || document.body;
+
+    // create modals for each item
+    const modalsRoot = document.getElementById('modals-root');
+    items.forEach((it, idx) => {
+      if(!it.name) return;
+      // Create trigger: already in DOM as .item with data-item
+      // Build modal
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+      modal.id = 'modal-' + idx;
+
+      const content = document.createElement('div');
+      content.className = 'modal-content';
+
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'modal-close';
+      closeBtn.innerHTML = '&times;';
+      closeBtn.addEventListener('click', () => modal.style.display = 'none');
+
+      // placeholder image
+      const img = document.createElement('img');
+      img.src = 'images/icon-192.png';
+      img.alt = it.name + ' image';
+      img.className = 'modal-image';
+
+      const desc = document.createElement('div');
+      desc.className = 'modal-desc';
+      const priceText = it.price ? ' - $' + it.price : '';
+      desc.textContent = it.name + priceText + (it.desc ? ' — ' + it.desc : '');
+
+      content.appendChild(closeBtn);
+      content.appendChild(img);
+      content.appendChild(desc);
+      modal.appendChild(content);
+      modalsRoot.appendChild(modal);
     });
 
-    // Attach click/keyboard handlers
-    allItems.forEach(el => {
+    // click handlers for each item to open modal
+    document.querySelectorAll('.item').forEach((el, i) => {
       el.addEventListener('click', () => {
-        const name = el.getAttribute('data-item');
-        openModalFor(name);
-      });
-      el.addEventListener('keydown', (e) => {
-        if(e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          el.click();
+        const name = el.dataset.item;
+        // find corresponding modal by index if possible; fallback to first
+        const modal = document.getElementById('modal-' + i);
+        if (modal) {
+          modal.style.display = 'block';
+        } else {
+          // fallback: open first modal
+          const first = document.querySelector('.modal');
+          if (first) first.style.display = 'block';
         }
       });
     });
 
-    // Close logic
-    function closeModal() {
-      modalOverlay.classList.remove('active');
-      modalOverlay.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';
-      modalContent.innerHTML = '';
-    }
-    modalClose.addEventListener('click', closeModal);
-    modalOverlay.addEventListener('click', (e) => {
-      if(e.target === modalOverlay) closeModal();
-    });
-    modalOverlay.addEventListener('touchstart', (e) => {
-      if(e.target === modalOverlay) closeModal();
+    // Close modal when clicking outside content
+    window.addEventListener('click', (e) => {
+      document.querySelectorAll('.modal').forEach(m => {
+        if (e.target === m) m.style.display = 'none';
+      });
     });
   </script>
 </body>
