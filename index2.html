@@ -9,17 +9,11 @@
     <style>
         body { font-family: system-ui, -apple-system, sans-serif; }
         .menu-item { transition: all 0.2s ease; }
-        .menu-item:active { transform: scale(0.98); background-color: #f3f4f6; }
-        .modal { animation: fadeIn 0.2s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        .dark body { background-color: #111827; color: #e5e7eb; }
-        .dark .menu-item { background-color: #1f2937; }
-        .dark .menu-item:active { background-color: #374151; }
+        .menu-item:active { transform: scale(0.98); }
     </style>
 </head>
-<body class="bg-gray-50 max-w-md mx-auto">
-    <!-- Header -->
-    <div class="bg-white dark:bg-gray-900 border-b sticky top-0 z-50">
+<body class="bg-gray-50 max-w-md mx-auto dark:bg-gray-900 dark:text-gray-100">
+    <div class="bg-white dark:bg-gray-800 border-b sticky top-0 z-50">
         <div class="flex items-center justify-between p-4">
             <div class="flex items-center gap-3">
                 <img src="images/mammarosas.png" alt="Mamma Rosa's" class="h-12">
@@ -28,11 +22,8 @@
                     <p class="text-sm text-gray-600 dark:text-gray-400">381 Cheney Hwy, Titusville, FL 32780</p>
                 </div>
             </div>
-            <button id="theme-toggle" class="p-2 text-xl">
-                <i class="fa-solid fa-moon"></i>
-            </button>
+            <button id="theme-toggle" class="p-2 text-xl"><i class="fa-solid fa-moon"></i></button>
         </div>
-        
         <div class="px-4 pb-4 text-sm">
             <p class="text-gray-600 dark:text-gray-400">(321) 385-2553</p>
             <div class="mt-1 text-xs">
@@ -44,157 +35,112 @@
         </div>
     </div>
 
-    <!-- Menu -->
-    <div class="p-4">
+    <div class="p-4 space-y-6">
         <!-- Appetizers -->
-        <h2 class="font-semibold text-lg mb-2">Appetizers</h2>
-        <div class="space-y-1 mb-6">
-            <div onclick="showModal('Mozzarella Sticks', '$8.25', 'Crispy mozzarella sticks served with marinara sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Mozzarella Sticks</span><span>$8.25</span>
-            </div>
-            <div onclick="showModal('Fried Calamari', '$13.95', 'Tender calamari lightly fried and served with marinara.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Fried Calamari</span><span>$13.95</span>
-            </div>
-            <div onclick="showModal('Garlic Knots', '$6.00', 'Freshly baked garlic knots with marinara dipping sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Garlic Knots</span><span>$6.00</span>
-            </div>
-            <div onclick="showModal('Meatball or Sausage Marinara', '$10.00', 'Meatballs or sausage simmered in marinara sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Meatball or Sausage Marinara</span><span>$10.00</span>
-            </div>
-            <div onclick="showModal('Chicken Fingers', '$10.95', 'Crispy chicken fingers served with your choice of sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Chicken Fingers</span><span>$10.95</span>
-            </div>
-            <div onclick="showModal('French Fries', '$5.75', 'Golden crispy french fries.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>French Fries</span><span>$5.75</span>
+        <div>
+            <h2 class="font-semibold text-lg mb-2">Appetizers</h2>
+            <div class="space-y-1">
+                <div onclick="showModal('Mozzarella Sticks', '$8.25', 'Crispy mozzarella sticks served with marinara sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Mozzarella Sticks</span><span>$8.25</span></div>
+                <div onclick="showModal('Fried Calamari', '$13.95', 'Tender calamari lightly fried and served with marinara.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Fried Calamari</span><span>$13.95</span></div>
+                <div onclick="showModal('Garlic Knots', '$6.00', 'Freshly baked garlic knots with marinara dipping sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Garlic Knots</span><span>$6.00</span></div>
+                <div onclick="showModal('Meatball or Sausage Marinara', '$10.00', 'Meatballs or sausage simmered in marinara sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Meatball or Sausage Marinara</span><span>$10.00</span></div>
+                <div onclick="showModal('Chicken Fingers', '$10.95', 'Crispy chicken fingers served with your choice of sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Chicken Fingers</span><span>$10.95</span></div>
+                <div onclick="showModal('French Fries', '$5.75', 'Golden crispy french fries.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>French Fries</span><span>$5.75</span></div>
             </div>
         </div>
 
         <!-- Sides -->
-        <h2 class="font-semibold text-lg mb-2">Sides</h2>
-        <div class="space-y-1 mb-6">
-            <div onclick="showModal('Alfredo Sauce', '$6.75', 'Creamy Alfredo sauce side.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Alfredo Sauce</span><span>$6.75</span>
-            </div>
-            <div onclick="showModal('Marinara Sauce', '$1.25', 'Classic marinara sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Marinara Sauce</span><span>$1.25</span>
+        <div>
+            <h2 class="font-semibold text-lg mb-2">Sides</h2>
+            <div class="space-y-1">
+                <div onclick="showModal('Alfredo Sauce', '$6.75', 'Creamy Alfredo sauce side.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Alfredo Sauce</span><span>$6.75</span></div>
+                <div onclick="showModal('Marinara Sauce', '$1.25', 'Classic marinara sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Marinara Sauce</span><span>$1.25</span></div>
             </div>
         </div>
 
         <!-- Salads -->
-        <h2 class="font-semibold text-lg mb-2">Salads</h2>
-        <div class="space-y-1 mb-6">
-            <div onclick="showModal('Caesar Salad', '$7.99', 'Crisp romaine, croutons, and parmesan with Caesar dressing. Add Chicken +$6.50')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Caesar Salad</span><span>$7.99</span>
-            </div>
-            <div onclick="showModal('House Salad', '$6.99', 'Mixed greens with tomatoes, onions, and olives. Add Chicken +$6.50')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>House Salad</span><span>$6.99</span>
-            </div>
-            <div onclick="showModal('Greek Salad', '$15.25', 'Fresh Lettuce, Tomato, Onion, Pepperoncini, Kalamata Olives, Ham, Salami, Feta')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Greek Salad</span><span>$15.25</span>
-            </div>
-            <div onclick="showModal('Antipasto Salad', '$15.25', 'Fresh Lettuce, Tomato, Ham, Salami, Olives, Pepperoncini, Mozzarella')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Antipasto Salad</span><span>$15.25</span>
-            </div>
-            <div onclick="showModal('Extra Dressing', '$1.25', 'Additional dressing choice.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Extra Dressing</span><span>$1.25</span>
+        <div>
+            <h2 class="font-semibold text-lg mb-2">Salads</h2>
+            <div class="space-y-1">
+                <div onclick="showModal('Caesar Salad', '$7.99', 'Crisp romaine, croutons, and parmesan with Caesar dressing. Add Chicken +$6.50')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Caesar Salad</span><span>$7.99</span></div>
+                <div onclick="showModal('House Salad', '$6.99', 'Mixed greens with tomatoes, onions, and olives. Add Chicken +$6.50')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>House Salad</span><span>$6.99</span></div>
+                <div onclick="showModal('Greek Salad', '$15.25', 'Fresh Lettuce, Tomato, Onion, Pepperoncini, Kalamata Olives, Ham, Salami, Feta')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Greek Salad</span><span>$15.25</span></div>
+                <div onclick="showModal('Antipasto Salad', '$15.25', 'Fresh Lettuce, Tomato, Ham, Salami, Olives, Pepperoncini, Mozzarella')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Antipasto Salad</span><span>$15.25</span></div>
+                <div onclick="showModal('Extra Dressing', '$1.25', 'Additional dressing choice.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Extra Dressing</span><span>$1.25</span></div>
             </div>
         </div>
 
         <!-- Entrees -->
-        <h2 class="font-semibold text-lg mb-2">Entrees</h2>
-        <p class="text-xs text-gray-500 mb-1">Served with Garlic Bread and Salad</p>
-        <div class="space-y-1 mb-6">
-            <div onclick="showModal('Chicken Parmigiana with Spaghetti', '$19.95', 'Breaded chicken breast topped with marinara and mozzarella over spaghetti.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Chicken Parmigiana with Spaghetti</span><span>$19.95</span>
-            </div>
-            <div onclick="showModal('Eggplant Parmigiana with Spaghetti', '$19.95', 'Breaded eggplant topped with marinara and mozzarella over spaghetti.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Eggplant Parmigiana with Spaghetti</span><span>$19.95</span>
-            </div>
-            <div onclick="showModal('Fettuccine Alfredo', '$17.95', 'Fettuccine in creamy Alfredo sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Fettuccine Alfredo</span><span>$17.95</span>
-            </div>
-            <div onclick="showModal('Fettuccine Alfredo with Chicken', '$20.95', 'Fettuccine Alfredo topped with grilled chicken.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Fettuccine Alfredo with Chicken</span><span>$20.95</span>
+        <div>
+            <h2 class="font-semibold text-lg mb-2">Entrees</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Served with Garlic Bread and Salad</p>
+            <div class="space-y-1">
+                <div onclick="showModal('Chicken Parmigiana with Spaghetti', '$19.95', 'Breaded chicken breast topped with marinara and mozzarella over spaghetti.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Chicken Parmigiana with Spaghetti</span><span>$19.95</span></div>
+                <div onclick="showModal('Eggplant Parmigiana with Spaghetti', '$19.95', 'Breaded eggplant topped with marinara and mozzarella over spaghetti.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Eggplant Parmigiana with Spaghetti</span><span>$19.95</span></div>
+                <div onclick="showModal('Fettuccine Alfredo', '$17.95', 'Fettuccine in creamy Alfredo sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Fettuccine Alfredo</span><span>$17.95</span></div>
+                <div onclick="showModal('Fettuccine Alfredo with Chicken', '$20.95', 'Fettuccine Alfredo topped with grilled chicken.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Fettuccine Alfredo with Chicken</span><span>$20.95</span></div>
             </div>
         </div>
 
         <!-- Pasta -->
-        <h2 class="font-semibold text-lg mb-2">Pasta with Sauces</h2>
-        <p class="text-xs text-gray-500 mb-1">Spaghetti, Ziti, or Fettuccine</p>
-        <div class="space-y-1 mb-6">
-            <div onclick="showModal('Any Pasta + Any Sauce', '$12.00', 'Choose Spaghetti, Ziti, or Fettuccine with Tomato or Marinara Sauce. Add Meatball +$3.00, Add Sausage +$4.00')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Any Pasta + Any Sauce</span><span>$12.00</span>
+        <div>
+            <h2 class="font-semibold text-lg mb-2">Pasta with Sauces</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Spaghetti, Ziti, or Fettuccine</p>
+            <div class="space-y-1">
+                <div onclick="showModal('Any Pasta + Any Sauce', '$12.00', 'Choose Spaghetti, Ziti, or Fettuccine with Tomato or Marinara Sauce. Add Meatball +$3.00, Add Sausage +$4.00')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Any Pasta + Any Sauce</span><span>$12.00</span></div>
             </div>
         </div>
 
         <!-- Baked Pasta -->
-        <h2 class="font-semibold text-lg mb-2">Baked Pasta</h2>
-        <p class="text-xs text-gray-500 mb-1">Served with Tomato Sauce and Garlic Bread</p>
-        <div class="space-y-1 mb-6">
-            <div onclick="showModal('Lasagna', '$16.50', 'Layers of pasta, ricotta, mozzarella, and meat sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Lasagna</span><span>$16.50</span>
-            </div>
-            <div onclick="showModal('Baked Ziti', '$16.50', 'Ziti baked with marinara and melted mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Baked Ziti</span><span>$16.50</span>
+        <div>
+            <h2 class="font-semibold text-lg mb-2">Baked Pasta</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Served with Tomato Sauce and Garlic Bread</p>
+            <div class="space-y-1">
+                <div onclick="showModal('Lasagna', '$16.50', 'Layers of pasta, ricotta, mozzarella, and meat sauce.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Lasagna</span><span>$16.50</span></div>
+                <div onclick="showModal('Baked Ziti', '$16.50', 'Ziti baked with marinara and melted mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Baked Ziti</span><span>$16.50</span></div>
             </div>
         </div>
 
         <!-- Subs -->
-        <h2 class="font-semibold text-lg mb-2">10" Subs</h2>
-        <div class="space-y-1 mb-6">
-            <div onclick="showModal('Meatball Parmigiana', '$13.75', 'Meatballs with marinara and melted mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Meatball Parmigiana</span><span>$13.75</span>
-            </div>
-            <div onclick="showModal('Chicken Parmigiana Sub', '$13.75', 'Breaded chicken with marinara and mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Chicken Parmigiana Sub</span><span>$13.75</span>
-            </div>
-            <div onclick="showModal('Sausage Parmigiana', '$13.75', 'Italian sausage with marinara and mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Sausage Parmigiana</span><span>$13.75</span>
-            </div>
-            <div onclick="showModal('Eggplant Parmigiana Sub', '$13.75', 'Breaded eggplant with marinara and mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Eggplant Parmigiana Sub</span><span>$13.75</span>
-            </div>
-            <div onclick="showModal('Sausage & Peppers', '$13.75', 'Italian sausage with peppers and onions.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Sausage & Peppers</span><span>$13.75</span>
-            </div>
-            <div onclick="showModal('Philly Cheesesteak', '$13.75', 'Green Peppers, Onions, Mushrooms, Mozzarella Cheese. Extra Steak +$6.50')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Philly Cheesesteak</span><span>$13.75</span>
-            </div>
-            <div onclick="showModal('Italian Sub', '$13.75', 'Ham, Salami, Pepperoni, Cheese, Lettuce, Tomato, Onion, Oil & Vinegar')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer">
-                <span>Italian Sub</span><span>$13.75</span>
+        <div>
+            <h2 class="font-semibold text-lg mb-2">10" Subs</h2>
+            <div class="space-y-1">
+                <div onclick="showModal('Meatball Parmigiana', '$13.75', 'Meatballs with marinara and melted mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Meatball Parmigiana</span><span>$13.75</span></div>
+                <div onclick="showModal('Chicken Parmigiana Sub', '$13.75', 'Breaded chicken with marinara and mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Chicken Parmigiana Sub</span><span>$13.75</span></div>
+                <div onclick="showModal('Sausage Parmigiana', '$13.75', 'Italian sausage with marinara and mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Sausage Parmigiana</span><span>$13.75</span></div>
+                <div onclick="showModal('Eggplant Parmigiana Sub', '$13.75', 'Breaded eggplant with marinara and mozzarella.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Eggplant Parmigiana Sub</span><span>$13.75</span></div>
+                <div onclick="showModal('Sausage & Peppers', '$13.75', 'Italian sausage with peppers and onions.')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Sausage & Peppers</span><span>$13.75</span></div>
+                <div onclick="showModal('Philly Cheesesteak', '$13.75', 'Green Peppers, Onions, Mushrooms, Mozzarella Cheese. Extra Steak +$6.50')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Philly Cheesesteak</span><span>$13.75</span></div>
+                <div onclick="showModal('Italian Sub', '$13.75', 'Ham, Salami, Pepperoni, Cheese, Lettuce, Tomato, Onion, Oil & Vinegar')" class="menu-item flex justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-lg cursor-pointer"><span>Italian Sub</span><span>$13.75</span></div>
             </div>
         </div>
 
-        <!-- Pizzas -->
-        <h2 class="font-semibold text-lg mb-2">Specialty Pizzas</h2>
-        <table class="w-full text-sm mb-8">
-            <thead>
-                <tr class="border-b dark:border-gray-700">
-                    <th class="text-left py-2">Pizza</th>
-                    <th class="text-center py-2">12"</th>
-                    <th class="text-center py-2">18"</th>
-                    <th class="text-center py-2">20"</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr onclick="showModal('Margherita', '$13 / $18 / $21', 'Classic tomato, fresh mozzarella, and basil.')" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                    <td class="py-2">Margherita</td>
-                    <td class="text-center">$13</td>
-                    <td class="text-center">$18</td>
-                    <td class="text-center">$21</td>
-                </tr>
-                <tr onclick="showModal('Meat Lovers', '$16 / $22 / $26', 'Pepperoni, sausage, ham, and bacon.')" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                    <td class="py-2">Meat Lovers</td>
-                    <td class="text-center">$16</td>
-                    <td class="text-center">$22</td>
-                    <td class="text-center">$26</td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- Specialty Pizzas -->
+        <div>
+            <h2 class="font-semibold text-lg mb-2">Specialty Pizzas</h2>
+            <table class="w-full text-sm">
+                <thead>
+                    <tr>
+                        <th class="text-left py-1">Pizza</th>
+                        <th class="text-center py-1">12"</th>
+                        <th class="text-center py-1">18"</th>
+                        <th class="text-center py-1">20"</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="showModal('Margherita', '$13 / $18 / $21', 'Classic tomato, fresh mozzarella, and basil.')" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <td class="py-2">Margherita</td><td class="text-center">$13</td><td class="text-center">$18</td><td class="text-center">$21</td>
+                    </tr>
+                    <tr onclick="showModal('Meat Lovers', '$16 / $22 / $26', 'Pepperoni, sausage, ham, and bacon.')" class="cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <td class="py-2">Meat Lovers</td><td class="text-center">$16</td><td class="text-center">$22</td><td class="text-center">$26</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Modal -->
-    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onclick="closeModal()">
+    <div id="modal" onclick="closeModal()" class="hidden fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50">
         <div onclick="event.stopImmediatePropagation()" class="bg-white dark:bg-gray-800 m-4 rounded-xl max-w-sm w-full p-5 relative">
             <button onclick="closeModal()" class="absolute top-3 right-4 text-xl">&times;</button>
             <img id="modal-image" src="images/icon-192.png" class="w-24 h-24 mx-auto mb-4 rounded-lg" alt="">
@@ -205,28 +151,30 @@
     </div>
 
     <script>
-        // Theme Toggle
+        // Theme toggle
         const toggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
-        
-        function updateIcon() {
-            const isDark = html.classList.contains('dark');
-            toggle.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+        function setTheme(isDark) {
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                toggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+            } else {
+                document.documentElement.classList.remove('dark');
+                toggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+            }
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
-        
         toggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-            updateIcon();
+            const isDark = !document.documentElement.classList.contains('dark');
+            setTheme(isDark);
         });
-        
-        // Load saved theme
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            html.classList.add('dark');
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setTheme(true);
+        } else {
+            setTheme(false);
         }
-        updateIcon();
 
-        // Modal functions
+        // Modal
         function showModal(title, price, desc) {
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-price').innerText = price;
@@ -234,11 +182,10 @@
             document.getElementById('modal').classList.remove('hidden');
             document.getElementById('modal').classList.add('flex');
         }
-        
         function closeModal() {
-            const modal = document.getElementById('modal');
-            modal.classList.remove('flex');
-            modal.classList.add('hidden');
+            const m = document.getElementById('modal');
+            m.classList.remove('flex');
+            m.classList.add('hidden');
         }
     </script>
 </body>
